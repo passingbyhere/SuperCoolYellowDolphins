@@ -11,8 +11,8 @@ public class ArrayPriorityQueue<Ticket> implements PriorityQueue<T>{
     }
 
     public void add(Ticket item){
-	for(int i = 0; i < _data.size(); i++){
-	    if(item.priority >= (_data.get(i)).priority)){
+	for(int i = 0; i < _data.size(); i++) {
+	    if ( item.compareTo(_data.get(i)) ) {
 		_data.add(i, item);
 		return;
 	    }
