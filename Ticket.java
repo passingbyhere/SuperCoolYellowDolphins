@@ -28,7 +28,9 @@ public class Ticket implements Comparable{
 	return name;
     }
     public String getSol(){
+	return solDescription;
     }
+<<<<<<< HEAD
 
 
 
@@ -61,3 +63,32 @@ public class Ticket implements Comparable{
 
 
     
+=======
+    public int getID(){
+	return ID;
+    }
+    public String getProblem(){
+	return problem;
+    }
+
+    //Mutators
+    public void setStatus(int stat){
+	_status = stat;
+    }
+    public void setPriority(int priority){
+	_priority = priority;
+    }
+    public void setName(String _name){
+	name = _name;
+    }
+    public void setSol(String solution){
+	solDesscription = stolution;
+    }
+    public void setID(int _ID){
+	ID = _ID;
+    }
+    public void setProblem(String _problem){
+	problem = _problem;
+    }
+}
+>>>>>>> e32ec61cc3c889f08ec83f53739f3a2037d07818

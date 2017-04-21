@@ -12,7 +12,7 @@ public class ArrayPriorityQueue<Ticket> implements PriorityQueue<T>{
 
     public void add(Ticket item){
 	for(int i = 0; i < _data.size(); i++) {
-	    if ( item.compareTo(_data.get(i)) ) {
+	    if ( item.compareTo(_data.get(i)) == 1) {
 		_data.add(i, item);
 		return;
 	    }
