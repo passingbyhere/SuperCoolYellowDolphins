@@ -1,26 +1,30 @@
 import java.util.ArrayList;
     
-public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
-    private ArrayList _data;
+public class ArrayPriorityQueue<Ticket> implements PriorityQueue<T>{
+    private ArrayList<Ticket> _data;
     public ArrayPriorityQueue(){
-	_data = new ArrayList();
+	_data = new ArrayList<Ticket>();
     }
+    
     public boolean isEmpty(){
 	return _data.size() == 0;
     }
-    public void add(T x){
+
+    public void add(Ticket item){
 	for(int i = 0; i < _data.size(); i++){
-	    if(x >= (int)_data.get(i)){
-		_data.add(i, x);
+	    if(item.priority >= (_data.get(i)).priority)){
+		_data.add(i, item);
 		return;
 	    }
 	}
-	_data.add(_data.size(), x);
+	_data.add(_data.size(), item);
     }
-    public T peekMin(){
+
+    public Ticket peekMin(){
 	return _data.get(_data.size()-1);
     }
-    public T removeMin(){
+
+    public Ticket removeMin(){
 	return _data.remove(_data.size()-1);
     }
 }
