@@ -90,5 +90,18 @@ public class Ticket implements Comparable{
     public void setProblem(String _problem){
 	problem = _problem;
     }
+
+    //compare
+    public int compareTo(Ticket otherTicket){
+	if(this._priority < otherTicket._priority){
+	    return -1;
+	}
+	if(this._priority > otherTicket._priority){
+	    return 1;
+	}
+	else{
+	    return 0;
+	}
+    }
 }
 >>>>>>> e32ec61cc3c889f08ec83f53739f3a2037d07818
