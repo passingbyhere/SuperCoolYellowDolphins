@@ -1,9 +1,14 @@
+import java.util
+
 public class HelpDesk{
     private ArrayPriorityQueue<Ticket> _line;
 
-     public void NewProblem () {
+    public void NewProblem () {
 	int topic; 
 	System.out.println("Welcome to the SuperCoolYellowDolphin's Help Desk! How can we help you today?");
+	
+	System.out.println("What's your name?");
+	String name = Keyboard.readString();
 
 	System.out.println("Select a topic!");
 	System.out.println("\t1: Software issues");
@@ -12,11 +17,13 @@ public class HelpDesk{
 	topic = Keyboard.readInt();
 
 	if (topic == 1) {
-	    problem = "Software";
+	    String problem = "Software";
 	}
 
 	if (topic == 2) {
-	    problem = "Hardware";
+	    String problem = "Hardware";
 	}
     }
+    
+    
 }
