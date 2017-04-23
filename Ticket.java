@@ -1,75 +1,62 @@
-public class Ticket implements Comparable{
-    //variables
-    private int _status;
-    private int _priority;
-    private String name;
-    private String solDescription;
-    private int ID;
-    private String problem;
+/*
+Team SuperCoolYellowDolphins
+Queenie Xiang, Elaina Chung, Fabiola Radosav
+APCS2 PD3
+LAB #03: RUVIP?
+*/
 
-    //constructor;
-    public Ticket(int status, int priority, String _name, String solution, int _ID, String _problem){
-	_status = status;
-	_priority = priority;
-	name = _name;
-	solDescription = solution;
-	ID = _ID;
-	problem = _problem;
+public class Ticket implements Comparable{
+    //Instance variables representing the properties of a Ticket
+    private int _ID = 000000; //Starting off value for _ID 
+    private int _status; //0 -- unsolved. 1 -- solved 
+    private int _priority; // 0 -- highest priority. Priority decreases as the number increases 
+    private String _submitterName; 
+    private String _issue;
+    private String _solution;
+
+    //Constructor;
+    public Ticket( int inputPriority, String inputName, String inputProblem){
+	_priority = inputPriority;
+	_submitterName = inputName;
+	_issue = inputProblem;
+
+	_ID = createID(); 	
+	_status = 0;
+	_solution = ""; 
     }
 
+    //Create an unique ID per ticket:
+    //Every time a new Ticket is submitted,the ID number will increment by 1. This will guarantee unique-ness while ensuring that a large number of tickets can be created without conflicts. 
+    public int createID() {
+	_ID += 1;
+	return _ID; 	
+    }
+    
     //Accessors
-    public int getStatus(){
+    public int getID() {
+	return _ID;
+    }
+    
+    public int getStatus() {
 	return _status;
     }
-    public int getPriority(){
+    
+    public int getPriority() {
 	return _priority;
     }
-    public String getName(){
-	return name;
-    }
-    public String getSol(){
-	return solDescription;
-    }
-<<<<<<< HEAD
-
-
-
-    //Reading Inputs:
-
-    public void NewProblem() {
-	int topic; 
-	System.out.println("Welcome to the SuperCoolYellowDolphin's Help Desk! How can we help you today?");
-
-	System.out.println("Select a topic!");
-	System.out.println("\t1: Software issues");
-	System.out.println("\t2: Hardware issues");
-
-	topic = Keyboard.readInt();
-
-	if (topic == 1) {
-	    problem = "Software";
-	}
-
-	if (topic == 2) {
-	    problem = "Hardware";
-	}
-    }
-}
-
-
-
-	    
-	
-
-
     
-=======
-    public int getID(){
-	return ID;
+    public String getName() {
+	return _submitterName;
     }
-    public String getProblem(){
-	return problem;
+
+    public String getIssue() {
+	return _issue;
     }
+    
+    public String getSolution() {
+	return _solution;
+    } 
+
 
     //Mutators
     public void setStatus(int stat){
@@ -78,30 +65,54 @@ public class Ticket implements Comparable{
     public void setPriority(int priority){
 	_priority = priority;
     }
-    public void setName(String _name){
-	name = _name;
+    public void setName(String name){
+	_submitterName = name;
     }
-    public void setSol(String solution){
-	solDesscription = stolution;
+    public void setSolution(String solution){
+        _solution = solution;
     }
-    public void setID(int _ID){
-	ID = _ID;
-    }
-    public void setProblem(String _problem){
-	problem = _problem;
-    }
+ 
 
-    //compare
+    //Returns corresponding status
+    public String retStatus() {
+	if (_status == 0) {
+	    return "Unsolved";
+	}
+
+	else {
+	    return "Solved";
+	}
+
+    }
+	
+    //Compares the priority of two tickets
     public int compareTo(Ticket otherTicket){
-	if(this._priority < otherTicket._priority){
+	//If the priority of this ticket is less than the otherTicket being compared, return -1
+	if ( this._priority < otherTicket._priority ) {
 	    return -1;
 	}
-	if(this._priority > otherTicket._priority){
+	
+	//If the priority of this ticket is greater than the otherTicket being compared, return 1
+	else if ( this._priority > otherTicket._priority ) {
 	    return 1;
 	}
-	else{
+
+	//If the priority of this ticket is equal to the otherTicket being compared, return 0
+	else {
 	    return 0;
 	}
     }
+
+    public String toString() {
+	String retStr = "";
+	retStr +=
+	    "Ticket ID: " + getID() + 
+	    "\nSubmitter Name: " + getName() +
+	    "\nIssue: " + getIssue() +
+	    "\nStatus: " + retStatus() +
+	    "\nSolution: " + getSolution();
+	return retStr; 
+    }
+	   
 }
->>>>>>> e32ec61cc3c889f08ec83f53739f3a2037d07818
+
