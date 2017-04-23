@@ -66,10 +66,51 @@ public class HelpDesk{
 	System.out.println(currentTix); 
     }
 
-
+    public void solve(){
+	int fixed;
+	Ticket currentTix = _queue.peek();
+	System.out.println("Okay come on up " + currentTix.getName());
+	if(currentTix.getIssue().equals("Software")){
+	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
+	    System.out.println("Turn it off and then on.");
+	    System.out.println("Does it work now?");
+	    System.out.println("\t1: Yes");
+	    System.out.println("\t1: No");
+	    fixed = Keyboard.readInt();
+	    if(fixed == 1){
+		System.out.println("Yay! It's now fixed. Thank you for stopping by.");
+	        currentTix.setSolution("Turn it on and off");
+		currentTix.setStatus(1);
+		System.out.println("Here's your receipt.");
+		System.out.println(currentTix);
+		_queue.poll();
+	    }
+	    else{
+		System.out.println("Sorry we can't help you.");
+		currentTix.setSolution("None.");
+		System.out.println("Here's your receipt.");
+		System.out.println(currentTix);
+		_queue.poll();
+	    }
+	    return;
+	}
+	if(currentTix.getIssue().equals("Hardware")){
+	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
+	    System.out.println("We're going to take it to another place to fix it.");
+	    currentTix.setSolution("It's someone else's problem now.");
+	    currentTix.setStatus(1);
+	    System.out.println("Here's your receipt.");
+	    System.out.println(currentTix);
+	    _queue.poll();
+	    return;
+	}
+    }	
+    
+    
     public static void main (String[] args) {
 	HelpDesk Tester = new HelpDesk(); 
 	Tester.newProblem();
+	Tester.solve();
     }
     
     
