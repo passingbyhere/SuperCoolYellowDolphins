@@ -7,7 +7,7 @@ LAB #03: RUVIP?
 
 public class Ticket implements Comparable{
     //Instance variables representing the properties of a Ticket
-    private int _ID; //Starting off value for _ID 
+    private String _ID;
     private int _status; //0 -- unsolved. 1 -- solved 
     private int _priority; // 0 -- highest priority. Priority decreases as the number increases 
     private String _submitterName; 
@@ -15,26 +15,19 @@ public class Ticket implements Comparable{
     private String _solution;
 
     //Constructor;
-    public Ticket( int inputPriority, String inputName, String inputProblem){
+    public Ticket( int inputPriority, String inputName, String inputProblem, String inputID){
 	_priority = inputPriority;
 	_submitterName = inputName;
 	_issue = inputProblem;
-
-	_ID = createID(); 	
+	_ID = inputID; 	
 	_status = 0;
 	_solution = ""; 
     }
 
-    //Create an unique ID per ticket:
-    //Every time a new Ticket is submitted,the ID number will increment by 1. This will guarantee unique-ness while ensuring that a large number of tickets can be created without conflicts. 
-    public int createID() {
-        int currentID = getID();
-	setID(getID()+1); 
-	return _ID; 	
-    }
+   
     
     //Accessors
-    public int getID() {
+    public String getID() {
 	return _ID;
     }
     
@@ -60,9 +53,6 @@ public class Ticket implements Comparable{
 
 
     //Mutators
-    public void setID(int newID) {
-	_ID = newID;
-    }
     
     public void setStatus(int stat){
 	_status = stat;
@@ -91,20 +81,20 @@ public class Ticket implements Comparable{
     }
 	
     //Compares the priority of two tickets
-    public int compareTo(Ticket otherTicket){
+    public int compareTo(Object other){
 	//If the priority of this ticket is less than the otherTicket being compared, return -1
-	if ( this._priority > otherTicket._priority ) {
-	    return -1;
+	if ( this._priority > ((Ticket)other)._priority ) {
+	    return 1;
 	}
 	
 	//If the priority of this ticket is greater than the otherTicket being compared, return 1
-	else if ( this._priority < otherTicket._priority ) {
-	    return 1;
+	else if ( this._priority == ((Ticket)other)._priority ) {
+	    return 0;
 	}
 
 	//If the priority of this ticket is equal to the otherTicket being compared, return 0
 	else {
-	    return 0;
+	    return -1;
 	}
 	
     }

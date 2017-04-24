@@ -6,6 +6,7 @@ public class HelpDesk{
     int topic;
     int employment;
     int priority;
+    String ID; 
 
 
     //Creates a new Ticket according to the submitter's inputs 
@@ -14,11 +15,13 @@ public class HelpDesk{
 	
 	System.out.println("What's your name?");
 	String name = Keyboard.readString();
+
+	System.out.println("Create your own unique ID! Both letters and digits are allowed. We recommend that you restrict your input to 6-7 characters.");
+	ID = Keyboard.readString();
 	
 	System.out.println("What kind of issues are you experiencing? Select a topic:");
 	System.out.println("\t1: Software issues");
 	System.out.println("\t2: Hardware issues");
-
 	topic  = Keyboard.readInt();
 
 	if (topic == 1) {
@@ -28,7 +31,7 @@ public class HelpDesk{
 	if (topic == 2) {
 	    problem = "Hardware";
 	}
-
+	
 	System.out.println("Okay, great! Before we start solving your issue, what is your current employment status here?");
 	System.out.println("\t1: Intern");
 	System.out.println("\t2: Newly Employed");
@@ -59,7 +62,7 @@ public class HelpDesk{
 
 	System.out.println("Okay great! You're all set. I will now create your ticket. \nHere is your ticket information:");
 
-	Ticket currentTix = new Ticket( priority, name, problem);
+	Ticket currentTix = new Ticket( priority, name, problem, ID);
 	System.out.println(currentTix.getPriority());
 
 	_queue.add(currentTix); 
@@ -74,7 +77,7 @@ public class HelpDesk{
 	Ticket currentTix = _queue.peek();
 	System.out.println("========INFO ABOUT CURRENT TIX=========" + "\n" + currentTix + "\n");
 	
-	/* System.out.println("Hello! Come on up " + currentTix.getName());
+	System.out.println("Hello! Come on up " + currentTix.getName());
 
 	//If the submitter is of high employment in the company: 
 	if ( (currentTix.getPriority() == 0) || (currentTix.getPriority() == 1) ) {
@@ -127,8 +130,8 @@ public class HelpDesk{
 	    System.out.println("Here's your receipt:");
 	    System.out.println(currentTix);
 	    _queue.poll(); //Remove Ticket from _queue
-	    } 
-	*/ 
+	} 
+	
     }
 
     public void HelpDeskSimulation() {

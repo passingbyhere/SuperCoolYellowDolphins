@@ -8,7 +8,8 @@ LAB #03: RUVIP?
 import java.util.ArrayList;
     
 public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
-
+    //lowest priority --> highest priority
+    
     private ArrayList<T> _data;
 
     //Constructor 
@@ -26,14 +27,12 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     //0 is the highest priority and priority decreases as the int value increases
     public void add(T item) {
 	for(int i = 0; i < _data.size(); i++) {
-	    if ( ((Ticket)item).compareTo((Ticket)_data.get(i)) < 0) {
+	    if ( ( ((Comparable)_data.get(i)).compareTo((Comparable)item) >= 0)) {
 		_data.add(i, item);
 		return;
 	    }
 	}
-	_data.add(item); 
-	    
-       
+	_data.add(_data.size(), item); 
     }
     
 
@@ -45,7 +44,7 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     //Dequeues the item (Ticket in this case) with the highest priority 
     //Returns the value of the Ticket dequeued 
     public T poll() {
-	return _data.remove(_data.size()-1);
+	return _data.remove(_data.size()-1); 
     }
 
     public String toString() {
