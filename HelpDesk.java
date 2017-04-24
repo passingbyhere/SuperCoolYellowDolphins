@@ -1,7 +1,14 @@
+/*
+Team SuperCoolYellowDolphins
+Queenie Xiang, Elaina Chung, Fabiola Radosav
+APCS2 PD3
+LAB #03: RUVIP?
+*/
+
 import cs1.Keyboard; 
 
 public class HelpDesk{
-    private ArrayPriorityQueue<Ticket> _queue;
+    private ArrayPriorityQueue<Ticket> _queue = new ArrayPriorityQueue<Ticket>();
     String problem;
     int topic;
     int employment;
@@ -11,8 +18,6 @@ public class HelpDesk{
 
     //Creates a new Ticket according to the submitter's inputs 
     public void newProblem () {
-	_queue = new ArrayPriorityQueue<Ticket>();
-	
 	System.out.println("What's your name?");
 	String name = Keyboard.readString();
 
@@ -61,13 +66,11 @@ public class HelpDesk{
 	}
 
 	System.out.println("Okay great! You're all set. I will now create your ticket. \nHere is your ticket information:");
-
-	Ticket currentTix = new Ticket( priority, name, problem, ID);
-	System.out.println(currentTix.getPriority());
-
-	_queue.add(currentTix); 
 	
-	//System.out.println(currentTix); 
+	Ticket currentTix = new Ticket( priority, name, problem, ID);
+	_queue.add(currentTix);
+	
+	System.out.println(currentTix); 
     } 
 
     //Resolve the tickets starting from the start (head) of the _queue with the submitters of the highest priority. 
@@ -75,7 +78,6 @@ public class HelpDesk{
 	int _solvedStatus; 
 
 	Ticket currentTix = _queue.peek();
-	System.out.println("========INFO ABOUT CURRENT TIX=========" + "\n" + currentTix + "\n");
 	
 	System.out.println("Hello! Come on up " + currentTix.getName());
 
@@ -130,10 +132,10 @@ public class HelpDesk{
 	    System.out.println("Here's your receipt:");
 	    System.out.println(currentTix);
 	    _queue.poll(); //Remove Ticket from _queue
-	} 
-	
+	} 	
     }
 
+    //Simulation of the operations of HelpDesk
     public void HelpDeskSimulation() {
 	boolean isEmptyQueue = false;
 	int selection; 
@@ -150,20 +152,16 @@ public class HelpDesk{
 
 	    else if (selection == 2) {	
 	        solve();
-	    }
-	 
-	    /*if ( _queue.isEmpty() ) {
-		isEmptyQueue = true;
-	    }
-	    */ 
+		if ( _queue.isEmpty() ) {
+		    isEmptyQueue = true;
+		}
+	    } 
 	}
     }
     
-    
+    //Main Method 
     public static void main (String[] args) {
 	HelpDesk Tester = new HelpDesk(); 
 	Tester.HelpDeskSimulation();
-    }
-    
-    
+    }  
 }

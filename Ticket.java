@@ -102,7 +102,8 @@ public class Ticket implements Comparable{
     public String toString() {
 	String retStr = "";
 	retStr += 
-	    "\nTicket ID: " + getID() + 
+	    "\nTicket ID: " + getID() +
+	    "\nPriority: " + getPriority() +
 	    "\nSubmitter Name: " + getName() +
 	    "\nIssue: " + getIssue() +
 	    "\nStatus: " + retStatus() +
