@@ -7,7 +7,11 @@ public class HelpDesk{
     int employment;
     int priority;
 
+<<<<<<< HEAD
     //Creates a new Ticket according to the submitter's inputs 
+=======
+    //creates a new Ticket
+>>>>>>> e9c3be3a874cc7687f6707134f9c82c4ef3023ad
     public void newProblem () {
 	_queue = new ArrayPriorityQueue<Ticket>();
 	
@@ -66,9 +70,15 @@ public class HelpDesk{
 	//System.out.println(currentTix); 
     }
 
+<<<<<<< HEAD
     //Resolve the tickets starting from the start (head) of the _queue with the submitters of the highest priority. 
     public void solve() {
 	int _solvedStatus; 
+=======
+    //solves the ticket with the highest priority
+    public void solve(){
+	int fixed;
+>>>>>>> e9c3be3a874cc7687f6707134f9c82c4ef3023ad
 	Ticket currentTix = _queue.peek();
 	System.out.println("========INFO ABOUT CURRENT TIX=========" + "\n" + currentTix + "\n");
 	
