@@ -7,6 +7,7 @@ public class HelpDesk{
     int employment;
     int priority;
 
+    //creates a new Ticket
     public void newProblem () {
 	_queue = new ArrayPriorityQueue<Ticket>();
 	
@@ -66,6 +67,7 @@ public class HelpDesk{
 	System.out.println(currentTix); 
     }
 
+    //solves the ticket with the highest priority
     public void solve(){
 	int fixed;
 	Ticket currentTix = _queue.peek();
