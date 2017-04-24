@@ -106,6 +106,7 @@ public class Ticket implements Comparable{
 	else {
 	    return 0;
 	}
+	
     }
 
     public String toString() {
