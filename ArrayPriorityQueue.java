@@ -25,14 +25,18 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     //Adds an item (Ticket in this case) to its proper position in the queue according to its priority
     //0 is the highest priority and priority decreases as the int value increases
     public void add(T item) {
-	for(int i = 0; i < _data.size(); i++) {
+
+	for(int i = _data.size()-1; i > -1; i--) {
 	    if ( ((Ticket)item).compareTo((Ticket)_data.get(i)) > 0) {
-		_data.add(i, item);
+		_data.add(i+1, item);
 		return;
 	    }
 	}
-	_data.add(_data.size(), item);
+	_data.add(_data.size(), item); 
+	    
+       
     }
+    
 
     //Returns the item (Ticket in this case) at the head of the ArrayList 
     public T peek() {
@@ -44,4 +48,13 @@ public class ArrayPriorityQueue<T> implements PriorityQueue<T>{
     public T poll() {
 	return _data.remove(_data.size()-1);
     }
+
+    public String toString() {
+	String retStr = "";
+	for (int i = 0; i < _data.size(); i++) {
+	    retStr += _data.get(i);
+	}
+	return retStr;
+    }
+
 }

@@ -7,10 +7,9 @@ public class HelpDesk{
     int employment;
     int priority;
 
+    //Creates a new Ticket according to the submitter's inputs 
     public void newProblem () {
 	_queue = new ArrayPriorityQueue<Ticket>();
-	
-	System.out.println("Welcome to the SuperCoolYellowDolphin's Help Desk! How can we help you today?");
 	
 	System.out.println("What's your name?");
 	String name = Keyboard.readString();
@@ -60,57 +59,105 @@ public class HelpDesk{
 	System.out.println("Okay great! You're all set. I will now create your ticket. \nHere is your ticket information:");
 
 	Ticket currentTix = new Ticket( priority, name, problem);
+	System.out.println(currentTix.getPriority());
 
 	_queue.add(currentTix); 
-
-	System.out.println(currentTix); 
+	
+	//System.out.println(currentTix); 
     }
 
-    public void solve(){
-	int fixed;
+    //Resolve the tickets starting from the start (head) of the _queue with the submitters of the highest priority. 
+    public void solve() {
+	int _solvedStatus; 
 	Ticket currentTix = _queue.peek();
-	System.out.println("Okay come on up " + currentTix.getName());
-	if(currentTix.getIssue().equals("Software")){
+	System.out.println("========INFO ABOUT CURRENT TIX=========" + "\n" + currentTix + "\n");
+	
+	/* System.out.println("Hello! Come on up " + currentTix.getName());
+
+	//If the submitter is of high employment in the company: 
+	if ( (currentTix.getPriority() == 0) || (currentTix.getPriority() == 1) ) {
+	    System.out.println("Because of your current employment position, the fastest way and easiest way to solve your problem is to replace your current computer with a brand new one! Don't worry, we will copy over all the files and reinstall all the programs found in your old computer.");
+	    currentTix.setSolution("Replaced the machine due to employment status.");
+	    currentTix.setStatus(1); //Ticket is now closed
+	    
+	    System.out.println("Here's your receipt:");
+	    System.out.println(currentTix);
+	    _queue.poll(); //Remove Ticket from _queue
+	}
+
+	//If the issue is a related to software: 
+	if ( currentTix.getIssue().equals("Software") ) {
 	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
-	    System.out.println("Turn it off and then on.");
-	    System.out.println("Does it work now?");
+
+	    System.out.println("Have you tried restarting your machine? Please turn it off and then on.");
+	    System.out.println("\nDoes it work now?");
 	    System.out.println("\t1: Yes");
-	    System.out.println("\t1: No");
-	    fixed = Keyboard.readInt();
-	    if(fixed == 1){
-		System.out.println("Yay! It's now fixed. Thank you for stopping by.");
-	        currentTix.setSolution("Turn it on and off");
-		currentTix.setStatus(1);
-		System.out.println("Here's your receipt.");
+	    System.out.println("\t2: No");
+	    _solvedStatus = Keyboard.readInt();
+	    
+	    if (_solvedStatus == 1) {
+		System.out.println("Yay! It's now fixed. Thank you for stopping by!");
+	        currentTix.setSolution("Restarted the machine");
+		currentTix.setStatus(1); //Ticket is now closed 
+
+		System.out.println("Here's your receipt:");
 		System.out.println(currentTix);
-		_queue.poll();
+		_queue.poll(); 
 	    }
-	    else{
+	    
+	    else {
 		System.out.println("Sorry we can't help you.");
 		currentTix.setSolution("None.");
-		System.out.println("Here's your receipt.");
+		
+		System.out.println("Here's your receipt:");
 		System.out.println(currentTix);
-		_queue.poll();
+		_queue.poll(); //Remove Ticket from _queue
 	    }
-	    return;
 	}
-	if(currentTix.getIssue().equals("Hardware")){
+
+	//If the issue is related to hardware: 
+	if ( currentTix.getIssue().equals("Hardware") ) {
 	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
-	    System.out.println("We're going to take it to another place to fix it.");
-	    currentTix.setSolution("It's someone else's problem now.");
-	    currentTix.setStatus(1);
-	    System.out.println("Here's your receipt.");
+	    System.out.println("Hm... The issue seems more complicated than what we can handle. We're going to send it to our main base located at 251 SREBMAHC Street and the SuperCoolYellowDolphins will resolve it there.");
+	    currentTix.setSolution("Sent to main base for repair.");
+	    currentTix.setStatus(1); //Ticket is now closed 
+	  
+	    System.out.println("Here's your receipt:");
 	    System.out.println(currentTix);
-	    _queue.poll();
-	    return;
+	    _queue.poll(); //Remove Ticket from _queue
+	    } 
+	*/ 
+    }
+
+    public void HelpDeskSimulation() {
+	boolean isEmptyQueue = false;
+	int selection; 
+	
+	while (! isEmptyQueue ) {
+	    System.out.println("Welcome to the SuperCoolYellowDolphin's Help Desk! How can we help you today?");
+	    System.out.println("\t1: I need help and want to submit a new ticket!");
+	    System.out.println("\t2: Check current status of the ticket queue."); 
+	    selection = Keyboard.readInt();
+
+	    if (selection == 1) {
+		newProblem();
+	    }
+
+	    else if (selection == 2) {	
+	        solve();
+	    }
+	 
+	    /*if ( _queue.isEmpty() ) {
+		isEmptyQueue = true;
+	    }
+	    */ 
 	}
-    }	
+    }
     
     
     public static void main (String[] args) {
 	HelpDesk Tester = new HelpDesk(); 
-	Tester.newProblem();
-	Tester.solve();
+	Tester.HelpDeskSimulation();
     }
     
     

@@ -7,7 +7,7 @@ LAB #03: RUVIP?
 
 public class Ticket implements Comparable{
     //Instance variables representing the properties of a Ticket
-    private int _ID = 000000; //Starting off value for _ID 
+    private int _ID; //Starting off value for _ID 
     private int _status; //0 -- unsolved. 1 -- solved 
     private int _priority; // 0 -- highest priority. Priority decreases as the number increases 
     private String _submitterName; 
@@ -28,7 +28,8 @@ public class Ticket implements Comparable{
     //Create an unique ID per ticket:
     //Every time a new Ticket is submitted,the ID number will increment by 1. This will guarantee unique-ness while ensuring that a large number of tickets can be created without conflicts. 
     public int createID() {
-	_ID += 1;
+        int currentID = getID();
+	setID(getID()+1); 
 	return _ID; 	
     }
     
@@ -59,6 +60,10 @@ public class Ticket implements Comparable{
 
 
     //Mutators
+    public void setID(int newID) {
+	_ID = newID;
+    }
+    
     public void setStatus(int stat){
 	_status = stat;
     }
@@ -88,12 +93,12 @@ public class Ticket implements Comparable{
     //Compares the priority of two tickets
     public int compareTo(Ticket otherTicket){
 	//If the priority of this ticket is less than the otherTicket being compared, return -1
-	if ( this._priority < otherTicket._priority ) {
+	if ( this._priority > otherTicket._priority ) {
 	    return -1;
 	}
 	
 	//If the priority of this ticket is greater than the otherTicket being compared, return 1
-	else if ( this._priority > otherTicket._priority ) {
+	else if ( this._priority < otherTicket._priority ) {
 	    return 1;
 	}
 
@@ -105,8 +110,8 @@ public class Ticket implements Comparable{
 
     public String toString() {
 	String retStr = "";
-	retStr +=
-	    "Ticket ID: " + getID() + 
+	retStr += 
+	    "\nTicket ID: " + getID() + 
 	    "\nSubmitter Name: " + getName() +
 	    "\nIssue: " + getIssue() +
 	    "\nStatus: " + retStatus() +
