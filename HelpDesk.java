@@ -157,6 +157,7 @@ public class HelpDesk{
 		}
 	    } 
 	}
+	System.out.println("It looks like we're done here.");
     }
     
     //Main Method 
