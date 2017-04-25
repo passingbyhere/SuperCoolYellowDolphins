@@ -93,7 +93,7 @@ public class HelpDesk{
 	}
 
 	//If the issue is a related to software: 
-	if ( currentTix.getIssue().equals("Software") ) {
+	else if ( currentTix.getIssue().equals("Software") ) {
 	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
 
 	    System.out.println("Have you tried restarting your machine? Please turn it off and then on.");
@@ -123,7 +123,7 @@ public class HelpDesk{
 	}
 
 	//If the issue is related to hardware: 
-	if ( currentTix.getIssue().equals("Hardware") ) {
+	else if ( currentTix.getIssue().equals("Hardware") ) {
 	    System.out.println("I see you have " + currentTix.getIssue() + " issues.");
 	    System.out.println("Hm... The issue seems more complicated than what we can handle. We're going to send it to our main base located at 251 SREBMAHC Street and the SuperCoolYellowDolphins will resolve it there.");
 	    currentTix.setSolution("Sent to main base for repair.");
@@ -154,6 +154,7 @@ public class HelpDesk{
 	        solve();
 		if ( _queue.isEmpty() ) {
 		    isEmptyQueue = true;
+		    System.out.println("All tickets have been resolved!"); 
 		}
 	    } 
 	}
